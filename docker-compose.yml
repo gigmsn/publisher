@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+
+  # run unit tests
+  test:
+    container_name: gigmsn_server_test
+    image: alesr/gigmsn-server_test
+    build:
+      context: .
+      dockerfile: resources/test/Dockerfile
+
+  # run server
+  server:
+    container_name: gigmsn_server
+    image: alesr/gigmsn-server
+    ports:
+      - "3000:3000"
+    links:
+      - broker:broker
+    build:
+      context: .
+      dockerfile: resources/server/prod/Dockerfile
+
+  # run client to send mock data to server
+  client:
+    container_name: gigmsn_client
+    image: alesr/gigmsn-client
+    links:
+      - server:server
+    build:
+      context: .
+      dockerfile: resources/client/Dockerfile
+
+  # RabbitMQ
+  broker:
+    container_name: gigmsn_broker
+    hostname: gigmsn_broker
+    ports:
+      - "8080:15672"
+    image: rabbitmq:3.6-management-alpine
