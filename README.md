@@ -22,7 +22,6 @@ Implement a simple TCP server written in GO for receiving messages though websoc
 │   └── test
 │       └── Dockerfile
 └── server
-    ├── broker.go
     ├── handlers.go
     ├── handlers_test.go
     ├── server.go
