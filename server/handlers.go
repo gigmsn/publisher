@@ -1,6 +1,7 @@
 package server
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/gigmsn/messagebroker"
@@ -22,7 +23,9 @@ func wsHandler(c *gin.Context) {
 }
 
 func ws(conn *websocket.Conn) {
-	broker, err := messagebroker.New("amqp://guest:guest@broker:5672", "gigmsn")
+	fmt.Printf("%q", queueAddr)
+	fmt.Printf("%q", queueName)
+	broker, err := messagebroker.New(queueAddr, queueName)
 	if err != nil {
 		log.Fatalf("could not create broker: %s", err)
 	}

@@ -11,8 +11,15 @@ var upgrader = websocket.Upgrader{
 	WriteBufferSize: 1024,
 }
 
+var queueAddr string
+var queueName string
+
 // Serve triggers the server initialization
-func Serve(addr string) {
+func Serve(addr, qAddr, qName string) {
+
+	queueAddr = qAddr
+	queueName = qName
+
 	if err := serverEngine().Run(addr); err != nil {
 		log.Fatalf("could not serve on %s: %s", addr, err)
 	}
