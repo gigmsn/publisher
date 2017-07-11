@@ -7,8 +7,8 @@ services:
   - docker
 
 before_install:
-  - docker build -t test -f resources/test/Dockerfile .
+  - make broker/up
 
 script:
-  - docker run --rm test
+  - make test
 ...
