@@ -50,6 +50,8 @@ Implement a simple TCP server written in GO for receiving messages though websoc
 
 		make jsclient/up
 
+Start the `consumer` container service in the [subscriber](https://github.com/gigmsn/subscriber) repository to consume messages comming to the queue.
+
 ### Available Commands:
 
 ```
