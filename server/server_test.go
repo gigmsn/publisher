@@ -1,17 +1,23 @@
 package server
 
 import (
+	"flag"
 	"net"
 	"net/http/httptest"
+	"reflect"
 	"testing"
 	"time"
-
-	"reflect"
 
 	"github.com/gin-gonic/gin"
 )
 
+func init() {
+	flag.StringVar(&queueAddr, "addr", "amqp://guest:guest@broker:5672", "queue address")
+	flag.StringVar(&queueName, "queue", "gigmsn_test", "queue name")
+	flag.Parse()
+}
 func TestServe(t *testing.T) {
+
 	timeOut := time.Duration(3) * time.Second
 	server := httptest.NewServer(serverEngine())
 	defer server.Close()
