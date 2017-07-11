@@ -10,7 +10,7 @@ help:
 	@grep -E '^[a-zA-Z0-9_/%\-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
 .PHONY: test
-test: ## run unit tests
+test: ## run tests
 	@docker-compose up --build test
 	@docker-compose rm -fsv test
 
@@ -23,12 +23,12 @@ server/stop: ## stop and remove server container
 	@docker-compose rm -fsv server
 
 .PHONY: client/up
-client/up: ## run client container
-	@docker-compose up --build client
+jsclient/up: ## run jsclient container
+	@docker-compose up --build jsclient
 
 .PHONY: client/stop
-client/stop: ## stop and remove client container
-	@docker-compose rm -fsv client
+jsclient/stop: ## stop and remove jsclient container
+	@docker-compose rm -fsv jsclient
 
 .PHONY: broker/up
 broker/up: ## start broker container

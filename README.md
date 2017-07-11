@@ -2,19 +2,19 @@
 
 Implement a simple TCP server written in GO for receiving messages though websocket connection and sending them to RabbitMQ message broker.
 
-###Project Structure:
+### Project Structure:
 
 ```
 .
 ├── LICENSE
 ├── Makefile
 ├── README.md
-├── client
-│   └── client.js
+├── jsclient
+│   └── jsclient.js
 ├── docker-compose.yml
 ├── main.go
 ├── resources
-│   ├── client
+│   ├── jsclient
 │   │   └── Dockerfile
 │   ├── server
 │   │   └── prod
@@ -46,9 +46,9 @@ Implement a simple TCP server written in GO for receiving messages though websoc
 
 		make server/up
 
-4. Start **JS client** for stream messages to the server via websocket connection:
+4. Start **jsclient** for stream messages to the server via websocket connection:
 
-		make client/up
+		make jsclient/up
 
 ### Available Commands:
 
@@ -58,9 +58,9 @@ GIGMSN Publisher
 ------------------------------------------------------------------------
 broker/stop                    stop and remove broker container
 broker/up                      start broker container
-client/stop                    stop and remove client container
-client/up                      run client container
+jsclient/stop                  stop and remove jsclient container
+jsclient/up                    run jsclient container
 server/stop                    stop and remove server container
 server/up                      run server container
-test                           run unit tests
+test                           run tests
 ```

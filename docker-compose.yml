@@ -2,10 +2,10 @@ version: '3'
 
 services:
 
-  # run unit tests
+  # run tests
   test:
-    container_name: gigmsn_server_test
-    image: alesr/gigmsn-server_test
+    container_name: gigmsn_publisher_test
+    image: alesr/gigmsn-publisher_test
     build:
       context: .
       dockerfile: resources/test/Dockerfile
@@ -22,15 +22,15 @@ services:
       context: .
       dockerfile: resources/server/prod/Dockerfile
 
-  # run client to send mock data to server
-  client:
-    container_name: gigmsn_client
-    image: alesr/gigmsn-client
+  # run jsclient to send mock data to server
+  jsclient:
+    container_name: gigmsn_jsclient
+    image: alesr/gigmsn-jsclient
     links:
       - server:server
     build:
       context: .
-      dockerfile: resources/client/Dockerfile
+      dockerfile: resources/jsclient/Dockerfile
 
   # RabbitMQ
   broker:
