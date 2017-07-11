@@ -6,6 +6,8 @@ services:
   test:
     container_name: gigmsn_publisher_test
     image: alesr/gigmsn-publisher_test
+    networks:
+      - gigmsnnet
     build:
       context: .
       dockerfile: resources/test/Dockerfile
@@ -14,6 +16,8 @@ services:
   server:
     container_name: gigmsn_server
     image: alesr/gigmsn-server
+    networks:
+      - gigmsnnet
     ports:
       - "3000:3000"
     links:
@@ -26,6 +30,8 @@ services:
   jsclient:
     container_name: gigmsn_jsclient
     image: alesr/gigmsn-jsclient
+    networks:
+      - gigmsnnet
     links:
       - server:server
     build:
@@ -36,6 +42,11 @@ services:
   broker:
     container_name: gigmsn_broker
     hostname: gigmsn_broker
+    networks:
+      - gigmsnnet
     ports:
       - "8080:15672"
     image: rabbitmq:3.6-management-alpine
+
+networks:
+  gigmsnnet:
